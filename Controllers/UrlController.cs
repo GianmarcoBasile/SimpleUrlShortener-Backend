@@ -7,10 +7,10 @@ namespace URLShortener.Controllers
 {
     [Route("[controller]")]
     [ApiController]
-    public class URLController : ControllerBase
+    public class UrlController : ControllerBase
     {
-        private readonly UrlDbContext _context;
-        public URLController(UrlDbContext context)
+        private readonly USDbContext _context;
+        public UrlController(USDbContext context)
         {
             _context = context;
         }

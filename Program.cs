@@ -13,14 +13,16 @@ Console.WriteLine(frontendUrl + ":" + frontendPort);
 
 var builder = WebApplication.CreateBuilder(args);
 
+string connectionString = builder.Configuration.GetConnectionString("DbConnection") ?? "";
+
 // Add services to the container.
 
 builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
-builder.Services.AddDbContext<UrlDbContext>(options =>
-    options.UseSqlite("Data Source=urls.db"));
+builder.Services.AddDbContext<USDbContext>(options =>
+    options.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
 
 builder.Services.AddCors(options =>
 {
